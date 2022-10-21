@@ -1,4 +1,4 @@
-from sentences import get_determiner, get_noun, get_verb
+from sentences import get_determiner, get_noun, get_verb, get_preposition, get_prepositional_phrase
 import random
 import pytest
 
@@ -80,7 +80,28 @@ def test_get_verb():
         word = get_verb(1, tense)
         assert word in future_words
                         
-     
+def test_get_preposition():
+    words = ["about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"]
+    for _ in range(31):
+        word = get_preposition()
+        assert word in words
+        
+def test_get_prepositional_phrase():
+    single_phrase = get_prepositional_phrase(1)
+    words = single_phrase.split(",")
+    assert (f"{words}")
+    
+    plural_phrase = get_prepositional_phrase(1)
+    words = plural_phrase.split(",")
+    assert (f"{words}")
+    
+    
+    
 # Call the main function that is part of pytest so that the
 # computer will execute the test functions in this file.
 pytest.main(["-v", "--tb=line", "-rN", __file__])

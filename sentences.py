@@ -3,52 +3,12 @@ import random
 
 def main():
     # past
-    quantity = 1
-    tense = "past"
-    determiner = get_determiner(quantity)
-    noun = get_noun(quantity)
-    verb = get_verb(quantity, tense)
-    print (f"{determiner.capitalize()} {noun} {verb}")
-   
-   #present
-    quantity = 1
-    tense = "present"
-    determiner = get_determiner(quantity)
-    noun = get_noun(quantity)
-    verb = get_verb(quantity, tense)
-    print (f"{determiner.capitalize()} {noun} {verb}")
-    
-    #future
-    quantity = 1
-    tense = "future"
-    determiner = get_determiner(quantity)
-    noun = get_noun(quantity)
-    verb = get_verb(quantity, tense)
-    print (f"{determiner.capitalize()} {noun} {verb}")
-    
-   #!=1 and past
-    quantity = 0
-    tense = "past"
-    determiner = get_determiner(quantity)
-    noun = get_noun(quantity)
-    verb = get_verb(quantity, tense)
-    print (f"{determiner.capitalize()} {noun} {verb}")
-    
-    #!=1 and present
-    quantity = 2
-    tense = "present"
-    determiner = get_determiner(quantity)
-    noun = get_noun(quantity)
-    verb = get_verb(quantity, tense)
-    print (f"{determiner.capitalize()} {noun} {verb}")
-    
-#   !=1 and future
-    quantity = 3
-    tense = "future"
-    determiner = get_determiner(quantity)
-    noun = get_noun(quantity)
-    verb = get_verb(quantity, tense)
-    print (f"{determiner.capitalize()} {noun} {verb}")
+    print(f"{get_determiner(1).capitalize()} {get_noun(1)} {get_verb(1, 'past')} {get_prepositional_phrase(1)}")
+    print(f"{get_determiner(1).capitalize()} {get_noun(1)} {get_verb(1, 'present')} {get_prepositional_phrase(1)}")
+    print(f"{get_determiner(1).capitalize()} {get_noun(1)} {get_verb(1, 'future')} {get_prepositional_phrase(1)}")
+    print(f"{get_determiner(2).capitalize()} {get_noun(2)} {get_verb(2, 'past')} {get_prepositional_phrase(2)}")
+    print(f"{get_determiner(2).capitalize()} {get_noun(2)} {get_verb(2, 'present')} {get_prepositional_phrase(2)}")
+    print(f"{get_determiner(2).capitalize()} {get_noun(2)} {get_verb(2, 'future')} {get_prepositional_phrase(2)}")
     
 def get_determiner(quantity):
     """Return a randomly chosen determiner. A determiner is
@@ -74,7 +34,7 @@ def get_determiner(quantity):
     word = random.choice(words)
     return word
 
-def get_noun(quantity_noun):
+def get_noun(quantity):
     """Return a randomly chosen noun.
     If quantity == 1, this function will
     return one of these ten single nouns:
@@ -91,7 +51,7 @@ def get_noun(quantity_noun):
     Return: a randomly chosen noun.
     """
     
-    if quantity_noun == 1:
+    if quantity == 1:
         words = ["bird", "boy", "car", "cat", "child",
         "dog", "girl", "man", "rabbit", "woman"]
     else:
@@ -144,6 +104,46 @@ def get_verb(quantity, tense):
     
     word = random.choice(words)
     return word
+
+def get_preposition():
+    """Return a randomly chosen preposition
+    from this list of prepositions:
+        "about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"
+
+    Return: a randomly chosen preposition.
+    """
+    words = ["about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"]
+    word = random.choice(words)
+    return word
+
+def get_prepositional_phrase(quantity):
+    """Build and return a prepositional phrase composed of three
+    words: a preposition, a determiner, and a noun by calling the
+    get_preposition, get_determiner, and get_noun functions.
+
+    Parameter
+        quantity: an integer that determines if the determiner
+            and noun in the prepositional phrase returned from
+            this function are single or pluaral.
+    Return: a prepositional phrase.
+    """
     
-main()
+    if quantity == 1:
+        prepositional_phrase = (f"{get_preposition()} {get_determiner(1)} {get_noun(1)} ")
+    else:
+        prepositional_phrase = (f"{get_preposition()} {get_determiner(2)} {get_noun(2)} ")
+    return prepositional_phrase
+
+if __name__ == "__main__":
+ main()
     
